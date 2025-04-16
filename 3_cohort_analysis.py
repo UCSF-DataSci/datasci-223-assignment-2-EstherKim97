@@ -21,7 +21,7 @@ def analyze_patient_cohorts(input_file: str) -> pl.DataFrame:
     cohort_results = pl.scan_parquet("patients_large.parquet").pipe(
         lambda df: df.filter((pl.col("BMI") >= 10) & (pl.col("BMI") <= 60))
     ).pipe(
-        lambda df: df.select(["BMI", "Glucose", "Age"])
+        lambda df: df.select(["BMI", "Glucose", "Age"]) 
     ).pipe(
         lambda df: df.with_columns(
             pl.col("BMI").cut(
